@@ -325,11 +325,11 @@ const Checkout = () => {
                 <div className="space-y-2 text-sm">
                   <p className="flex justify-between">
                     <span className="text-muted-foreground">Phone:</span>
-                    <a href="tel:+2341234567890" className="text-primary font-medium">+234 123 456 7890</a>
+                    <a href="tel:+2348148242485" className="text-primary font-medium">08148242485</a>
                   </p>
                   <p className="flex justify-between">
                     <span className="text-muted-foreground">WhatsApp:</span>
-                    <a href="https://wa.me/2341234567890" target="_blank" rel="noopener noreferrer" className="text-primary font-medium">+234 123 456 7890</a>
+                    <a href="https://wa.me/2348148242485" target="_blank" rel="noopener noreferrer" className="text-primary font-medium">08148242485</a>
                   </p>
                   <p className="flex justify-between">
                     <span className="text-muted-foreground">Email:</span>
