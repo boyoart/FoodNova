@@ -126,6 +126,13 @@ async def create_order(
     db.add(payment)
     db.commit()
     
+    # Send SMS notification for order placed
+    sms = get_sms_service()
+    if sms:
+        user = db.query(User).filter(User.id == user_id).first()
+        customer_name = user.full_name if user else "Customer"
+        sms.send_order_placed(order.phone, order.id, customer_name, order.total_amount)
+    
     # Fetch order with items
     items = db.query(OrderItem).filter(OrderItem.order_id == order.id).all()
     
