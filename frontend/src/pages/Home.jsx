@@ -212,7 +212,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="bg-primary text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                 FoodNova
@@ -230,10 +230,26 @@ const Home = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
+              <h4 className="font-semibold mb-4">Delivery Options</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>support@foodnova.com</li>
-                <li>Lagos, Nigeria</li>
+                <li>• Pickup (Free)</li>
+                <li>• Home Delivery</li>
+                <li className="text-xs">(Fee paid on delivery)</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Customer Support</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li>
+                  <a href="tel:+2341234567890" className="hover:text-white">+234 123 456 7890</a>
+                </li>
+                <li>
+                  <a href="https://wa.me/2341234567890" target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp Support</a>
+                </li>
+                <li>
+                  <a href="mailto:support@foodnova.com" className="hover:text-white">support@foodnova.com</a>
+                </li>
+                <li className="text-xs mt-2">Lagos, Nigeria</li>
               </ul>
             </div>
           </div>
