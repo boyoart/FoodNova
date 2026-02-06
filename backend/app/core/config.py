@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = "./uploads"
     MAX_UPLOAD_MB: int = 10
     
+    # Africa's Talking SMS
+    AT_USERNAME: str = ""
+    AT_API_KEY: str = ""
+    
     class Config:
         env_file = ".env"
         extra = "ignore"

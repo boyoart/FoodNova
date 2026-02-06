@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from .core.cors import setup_cors
+from .core.config import settings
 from .db.session import SessionLocal, engine
 from .db.base import Base
 from .db.init_db import init_db
 from .routes import auth, categories, products, packs, orders, admin, uploads
+from .services.sms import init_sms_service
 
 
 @asynccontextmanager
@@ -16,6 +18,11 @@ async def lifespan(app: FastAPI):
         init_db(db)
     finally:
         db.close()
+    
+    # Initialize SMS service
+    if settings.AT_USERNAME and settings.AT_API_KEY:
+        init_sms_service(settings.AT_USERNAME, settings.AT_API_KEY)
+    
     yield
     # Shutdown
 
