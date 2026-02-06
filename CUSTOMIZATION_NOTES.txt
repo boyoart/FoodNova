@@ -40,8 +40,9 @@ Search and replace "FoodNova" across these files:
 ### Brand Colors
 File: `/frontend/src/index.css`
 
-Primary color (deep green): `--primary: 156 50% 28%;`
-Accent color (orange): `--accent: 25 95% 53%;`
+Current colors (Orange & Green theme):
+- Primary color (green): `--primary: 142 70% 35%;`
+- Accent color (orange): `--accent: 25 95% 53%;`
 
 Change these HSL values to match your brand.
 
@@ -53,13 +54,13 @@ Support contact information is displayed in:
 - Footer on homepage (`/frontend/src/pages/Home.jsx`)
 - Checkout page sidebar (`/frontend/src/pages/Checkout.jsx`)
 
+### Current Contact Details:
+- Phone: 08148242485
+- WhatsApp: 08148242485
+- Email: support@foodnova.com
+- Address: 33 Ariyo Akinloye street, Bucknor Isheri, Lagos, Nigeria
+
 ### To Update Support Contacts:
-Search and replace these values:
-
-Phone Number: `+234 123 456 7890`
-WhatsApp: `https://wa.me/2341234567890`
-Email: `support@foodnova.com`
-
 Files to update:
 - `/frontend/src/pages/Home.jsx` (footer)
 - `/frontend/src/pages/Checkout.jsx` (support card)
@@ -86,17 +87,44 @@ The app supports two delivery types:
 ### To Update Pickup Location:
 File: `/frontend/src/pages/Checkout.jsx` (around line 200)
 
-```jsx
-<p className="text-sm text-muted-foreground mt-1">
-  FoodNova Store<br />
-  123 Main Street, Lagos, Nigeria<br />
-  Open: Mon-Sat 8AM - 8PM
-</p>
+Current location:
+```
+FoodNova Store
+33 Ariyo Akinloye street, Bucknor Isheri
+Lagos, Nigeria
+Open: Mon-Sat 8AM - 8PM
 ```
 
 ---
 
-## 4. ADMIN CREDENTIALS
+## 4. SMS NOTIFICATIONS (Africa's Talking)
+
+SMS notifications are sent for:
+- Order placed
+- Payment receipt approved
+- Payment receipt rejected
+- Order status: Paid
+- Order status: Confirmed
+- Order status: Out for Delivery
+
+### Configuration:
+File: `/backend/.env`
+
+```
+AT_USERNAME=sandbox
+AT_API_KEY=your_africastalking_api_key
+```
+
+For production, change `AT_USERNAME` to your Africa's Talking username.
+
+### SMS Templates:
+File: `/backend/app/services/sms.py`
+
+You can customize the SMS message templates in this file.
+
+---
+
+## 5. ADMIN CREDENTIALS
 
 Admin Portal URL: /admin/login
 
@@ -110,7 +138,18 @@ Change via environment variables in backend:
 
 ---
 
-## 5. CURRENCY
+## 6. ORDER STATUS FLOW
+
+Available order statuses:
+1. **pending** - Order placed, awaiting payment
+2. **paid** - Payment verified
+3. **confirmed** - Order confirmed and being prepared
+4. **out_for_delivery** - Order dispatched (SMS sent)
+5. **cancelled** - Order cancelled
+
+---
+
+## 7. CURRENCY
 
 All prices display in Nigerian Naira (₦)
 Format function in: `/frontend/src/api/store.js`
@@ -125,7 +164,7 @@ To change currency symbol, update this function.
 
 ---
 
-## 6. PAYMENT METHODS
+## 8. PAYMENT METHODS
 
 Current payment methods (Bank Transfer, Bank Deposit):
 File: `/frontend/src/pages/Checkout.jsx` (around line 225)
@@ -143,7 +182,7 @@ To add more payment methods, add to the array:
 
 ---
 
-## 7. BANK DETAILS FOR PAYMENT
+## 9. BANK DETAILS FOR PAYMENT
 
 Update bank details shown on Order Detail page:
 File: `/frontend/src/pages/OrderDetail.jsx` (around line 175)
@@ -159,3 +198,29 @@ File: `/frontend/src/pages/OrderDetail.jsx` (around line 175)
   Name: FoodNova Ltd
 </p>
 ```
+
+---
+
+## 10. DEPLOYMENT
+
+### Backend (Render)
+1. Set root directory: `backend`
+2. Build command: `pip install -r requirements.txt`
+3. Start command: `uvicorn app.main:app --host 0.0.0.0 --port 10000`
+
+Environment variables required:
+- DATABASE_URL (PostgreSQL)
+- JWT_SECRET
+- ADMIN_EMAIL
+- ADMIN_PASSWORD
+- FRONTEND_ORIGIN (Vercel URL)
+- AT_USERNAME
+- AT_API_KEY
+
+### Frontend (Vercel)
+1. Set root directory: `frontend`
+2. Build command: `yarn build`
+3. Output directory: `build`
+
+Environment variables:
+- REACT_APP_BACKEND_URL (Render backend URL)
