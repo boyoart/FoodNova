@@ -263,6 +263,11 @@ def update_receipt_status(
     if data.admin_note is not None:
         receipt.admin_note = data.admin_note
     
+    # Get order and user for SMS
+    order = db.query(Order).filter(Order.id == receipt.order_id).first()
+    user = db.query(User).filter(User.id == receipt.user_id).first()
+    customer_name = user.full_name if user else "Customer"
+    
     # If approved, update payment and order status
     if data.status == "approved":
         payment = db.query(Payment).filter(Payment.order_id == receipt.order_id).first()
@@ -271,9 +276,19 @@ def update_receipt_status(
             payment.verified_by = int(current_user.get("sub"))
             payment.verified_at = datetime.now(timezone.utc)
         
-        order = db.query(Order).filter(Order.id == receipt.order_id).first()
         if order:
             order.status = "paid"
+        
+        # Send SMS notification
+        sms = get_sms_service()
+        if sms and order:
+            sms.send_receipt_approved(order.phone, order.id, customer_name)
+    
+    elif data.status == "rejected":
+        # Send SMS notification for rejection
+        sms = get_sms_service()
+        if sms and order:
+            sms.send_receipt_rejected(order.phone, order.id, customer_name, data.admin_note)
     
     db.commit()
     
