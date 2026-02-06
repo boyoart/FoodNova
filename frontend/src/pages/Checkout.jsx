@@ -213,7 +213,8 @@ const Checkout = () => {
                       <p className="font-medium text-sm">Pickup Location</p>
                       <p className="text-sm text-muted-foreground mt-1">
                         FoodNova Store<br />
-                        123 Main Street, Lagos, Nigeria<br />
+                        33 Ariyo Akinloye street, Bucknor Isheri<br />
+                        Lagos, Nigeria<br />
                         Open: Mon-Sat 8AM - 8PM
                       </p>
                     </div>
