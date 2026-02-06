@@ -1,0 +1,94 @@
+# FoodNova Customization Guide
+
+## 1. LOGO CUSTOMIZATION
+
+### Navbar Logo (Main Header)
+File: `/frontend/src/components/Navbar.jsx` (Lines 24-31)
+
+Current code uses a styled div with letter "F":
+```jsx
+<div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+  <span className="text-white font-bold text-xl">F</span>
+</div>
+```
+
+To use your own logo image:
+1. Place your logo file in `/frontend/public/logo.png`
+2. Replace the code with:
+```jsx
+<img 
+  src="/logo.png"
+  alt="FoodNova" 
+  className="h-10 w-auto"
+/>
+```
+
+### Footer Logo
+File: `/frontend/src/pages/Home.jsx` (Around line 165)
+The footer has text-only branding "FoodNova". Update the text or add an image similarly.
+
+### Brand Name
+Search and replace "FoodNova" across these files:
+- `/frontend/src/components/Navbar.jsx`
+- `/frontend/src/pages/Home.jsx` (footer)
+- `/frontend/src/pages/Login.jsx`
+- `/frontend/src/pages/Register.jsx`
+- `/frontend/src/pages/AdminLogin.jsx`
+- `/frontend/src/pages/AdminDashboard.jsx`
+
+### Brand Colors
+File: `/frontend/src/index.css`
+
+Primary color (deep green): `--primary: 156 50% 28%;`
+Accent color (orange): `--accent: 25 95% 53%;`
+
+Change these HSL values to match your brand.
+
+---
+
+## 2. CUSTOMER SUPPORT
+
+Support contact information is displayed:
+- In the footer on the homepage
+- On the checkout page
+- On order detail pages
+
+Current support email: support@foodnova.com
+Update in: `/frontend/src/pages/Home.jsx` (footer section)
+
+---
+
+## 3. DELIVERY OPTIONS
+
+The app supports two delivery types:
+- **Pickup**: Customer picks up from store (no delivery fee)
+- **Delivery**: Delivered to customer's address (delivery fee paid upon delivery)
+
+Configuration in checkout flow at `/frontend/src/pages/Checkout.jsx`
+
+---
+
+## 4. ADMIN CREDENTIALS
+
+Admin Portal URL: /admin/login
+Email: admin@foodnova.com
+Password: Admin123!
+
+Change via environment variables:
+- ADMIN_EMAIL
+- ADMIN_PASSWORD
+
+---
+
+## 5. CURRENCY
+
+All prices display in Nigerian Naira (₦)
+Format function in: `/frontend/src/api/store.js`
+
+```js
+export const formatPrice = (amount) => {
+  return `₦${amount.toLocaleString()}`;
+};
+```
+
+To change currency, update this function.
