@@ -90,8 +90,8 @@ class FoodNovaAPITester:
 
     def test_customer_login(self):
         """Test customer login"""
-        # First register a customer
-        timestamp = datetime.now().strftime('%H%M%S')
+        # First register a customer with microseconds for uniqueness
+        timestamp = datetime.now().strftime('%H%M%S%f')
         register_data = {
             "email": f"testcustomer{timestamp}@test.com",
             "password": "TestPass123!",
@@ -100,7 +100,8 @@ class FoodNovaAPITester:
         
         success, _ = self.run_test("Customer Registration for Login", "POST", "api/auth/register", 200, register_data)
         if not success:
-            return False
+            # If registration fails, try to login with existing credentials
+            print("   Registration failed, trying to login with test credentials...")
         
         # Now login
         login_data = {
