@@ -105,7 +105,7 @@ def update_order_status(
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     
-    valid_statuses = ["pending", "paid", "confirmed", "cancelled", "out_for_delivery"]
+    valid_statuses = ["pending", "paid", "confirmed", "out_for_delivery", "delivered", "cancelled"]
     if data.status not in valid_statuses:
         raise HTTPException(status_code=400, detail=f"Invalid status. Must be one of: {valid_statuses}")
     
@@ -125,6 +125,8 @@ def update_order_status(
             sms.send_order_confirmed(order.phone, order.id, customer_name)
         elif data.status == "out_for_delivery":
             sms.send_order_out_for_delivery(order.phone, order.id, customer_name)
+        elif data.status == "delivered":
+            sms.send_sms(order.phone, f"Hi {customer_name}, your FoodNova order #{order.id} has been delivered! Thank you for shopping with us.")
     
     return {"message": "Order status updated", "status": order.status}
 
