@@ -1,27 +1,34 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 
 const CartContext = createContext(null);
 
 const CART_STORAGE_KEY = 'foodnova_cart';
 
-export const CartProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
+// Helper to load cart from localStorage
+const loadCartFromStorage = () => {
+  try {
     const savedCart = localStorage.getItem(CART_STORAGE_KEY);
     if (savedCart) {
-      try {
-        setItems(JSON.parse(savedCart));
-      } catch (error) {
-        console.error('Failed to load cart:', error);
-      }
+      return JSON.parse(savedCart);
     }
-  }, []);
+  } catch (error) {
+    console.error('Failed to load cart:', error);
+  }
+  return [];
+};
 
-  // Save cart to localStorage on change
+export const CartProvider = ({ children }) => {
+  // Initialize state directly from localStorage to avoid race condition
+  const [items, setItems] = useState(loadCartFromStorage);
+  const [isOpen, setIsOpen] = useState(false);
+  const isInitialMount = useRef(true);
+
+  // Save cart to localStorage on change (skip initial mount)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
