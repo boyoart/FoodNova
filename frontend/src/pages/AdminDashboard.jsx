@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { 
-  Package, ShoppingBag, Users, TrendingUp, 
-  ArrowRight, Clock, AlertCircle 
+  Package, ShoppingBag, TrendingUp, 
+  ArrowRight, Clock, AlertCircle, Layers 
 } from 'lucide-react';
 import { adminGetOrders, adminGetProducts, formatPrice } from '../api/store';
 
