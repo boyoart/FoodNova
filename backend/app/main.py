@@ -6,6 +6,7 @@ from .db.session import SessionLocal, engine
 from .db.base import Base
 from .db.init_db import init_db
 from .routes import auth, categories, products, packs, orders, admin, uploads
+from .routes import admin_categories, admin_packs
 from .services.sms import init_sms_service
 
 
