@@ -27,7 +27,7 @@ export const Navbar = () => {
             <img 
               src="https://customer-assets.emergentagent.com/job_7065ef37-6dbf-47e6-9949-9a26dec6d070/artifacts/tyhnj44c_logo.png" 
               alt="FoodNova - Quality Foodstuff. Reliable Supply." 
-              className="h-16 w-auto"
+              className="h-14 sm:h-16 md:h-20 w-auto"
             />
           </Link>
 
