@@ -2,26 +2,49 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        
+        <!-- PWA Meta Tags -->
+        <meta name="theme-color" content="#228B22" />
+        <meta name="description" content="FoodNova - Order quality groceries and food items delivered fresh to your doorstep. From rice to oil, noodles to spices." />
+        <meta name="application-name" content="FoodNova" />
+        
+        <!-- Apple PWA Meta Tags -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="FoodNova" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+        
+        <!-- Microsoft PWA Meta Tags -->
+        <meta name="msapplication-TileColor" content="#228B22" />
+        <meta name="msapplication-TileImage" content="%PUBLIC_URL%/icons/icon-144x144.png" />
+        <meta name="msapplication-config" content="none" />
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/icons/icon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/icons/icon-192x192.png" />
+        
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        
+        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of %PUBLIC_URL% in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
-
-        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Emergent | Fullstack App</title>
+        
+        <!-- Open Graph / Social Media -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FoodNova - Quality Foodstuff. Reliable Supply." />
+        <meta property="og:description" content="Order quality groceries and food items delivered fresh to your doorstep." />
+        <meta property="og:image" content="%PUBLIC_URL%/icons/icon-512x512.png" />
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FoodNova - Quality Foodstuff. Reliable Supply." />
+        <meta name="twitter:description" content="Order quality groceries and food items delivered fresh to your doorstep." />
+        
+        <title>FoodNova - Quality Foodstuff. Reliable Supply.</title>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
